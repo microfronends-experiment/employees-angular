@@ -1,2 +1,13 @@
-<p>ID {{ id }}</p>
-<p>name {{ employee.fullName }}</p>
+<div class="Employee">
+  <div class="Employee_name">
+    {{ employee.fullName }}
+  </div>
+  <div class="Details">
+    <div>Employee Id : {{ id }}</div>
+    <div>Gender : {{ employee.gender }}</div>
+    <div>Email Id : {{ employee.email }}</div>
+    <div>Contact Number : {{ employee.phone }}</div>
+    <div>Department : {{ employee.department }}</div>
+    <div>Date of hiring : {{ employee.hireDate | date }}</div>
+  </div>
+</div>
