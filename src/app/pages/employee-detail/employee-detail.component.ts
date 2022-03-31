@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { EmployeeDataService } from 'src/app/services/employee-data.service';
 
 interface Employee {
@@ -32,7 +32,9 @@ export class EmployeeDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = <string>this.route.snapshot.paramMap.get('id');
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.id = <string>params.get('id');
+    });
     this.fetchEmployee();
   }
 
