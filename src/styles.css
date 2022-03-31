@@ -1,10 +1,2 @@
 /* You can add global styles to this file, and also import other style files */
 /* For the styles to not interfere with other microfrontends , always put #single-spa-application\:angular-app in front of each css in this file */
-#single-spa-application\:angular-app img {
-  max-height: 100px;
-  border: 1px solid red;
-}
-
-#single-spa-application\:angular-app img:hover {
-  transform: scale(1.1);
-}

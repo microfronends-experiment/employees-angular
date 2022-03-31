@@ -1,3 +1,34 @@
 <div class="AngularApp">
   <router-outlet></router-outlet>
+  <div
+    style="
+      position: absolute;
+      left: 32px;
+      bottom: 32px;
+      display: flex;
+      align-items: center;
+      background-color: #dd1b16;
+      padding: 5px;
+      z-index: 5;
+      border-radius: 60px;
+    "
+  >
+    <picture
+      style="
+        margin-right: 10px;
+        background-color: #fff;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+      "
+    >
+      <img
+        [src]="logoSrc"
+        style="height: 36px; width: 36px; margin-top: 2px; margin-left: 2px"
+      />
+    </picture>
+    <div style="color: #000; font-size: 18px; padding-right: 10px">
+      Built with Angular
+    </div>
+  </div>
 </div>
