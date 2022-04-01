@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { EmployeeDataService } from 'src/app/services/employee-data.service';
 
@@ -16,7 +16,7 @@ interface Employee {
   templateUrl: './employee-detail.component.html',
   styleUrls: ['./employee-detail.component.css'],
 })
-export class EmployeeDetailComponent implements OnInit {
+export class EmployeeDetailComponent implements OnInit, OnDestroy {
   id: string = '';
   employee: Employee = {
     fullName: '',
@@ -26,21 +26,28 @@ export class EmployeeDetailComponent implements OnInit {
     department: '',
     hireDate: '',
   };
+  paramsSubscription: any;
   constructor(
     private route: ActivatedRoute,
     private employeeDataService: EmployeeDataService
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = <string>params.get('id');
-    });
-    this.fetchEmployee();
+    this.paramsSubscription = this.route.paramMap.subscribe(
+      (params: ParamMap) => {
+        this.id = <string>params.get('id');
+        this.fetchEmployee(this.id);
+      }
+    );
   }
 
-  fetchEmployee() {
-    this.employeeDataService.fetchEmployee(this.id).subscribe((data) => {
+  fetchEmployee(id: string) {
+    this.employeeDataService.fetchEmployee(id).subscribe((data) => {
       this.employee = <Employee>data;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.paramsSubscription.unsubscribe();
   }
 }
